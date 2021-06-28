@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.netology.domain.Product;
 
-@Data
 @RequiredArgsConstructor
 
 public class ProductRepository {
@@ -16,19 +15,6 @@ public class ProductRepository {
         System.arraycopy(items, 0, tmp, 0, items.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
-        items = tmp;
-    }
-
-    public void removeByID(int id) {
-        int length = items.length - 1;
-        Product[] tmp = new Product[length];
-        int index = 0;
-        for (Product item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
-            }
-        }
         items = tmp;
     }
 

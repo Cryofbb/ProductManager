@@ -7,7 +7,6 @@ import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 import ru.netology.ru.netology.repository.ProductRepository;
 
-@Data
 @RequiredArgsConstructor
 
 public class ProductManager {
@@ -15,10 +14,6 @@ public class ProductManager {
 
     public void save(Product product) {
         repo.save(product);
-    }
-
-    public void removeById(int id) {
-        repo.removeByID(id);
     }
 
     public Product[] searchBy(String text) {
