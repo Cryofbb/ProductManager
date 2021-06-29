@@ -71,12 +71,12 @@ public class ProductManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    public void shouldNotFindNonBookOrPhone() {
-        Product[] actual = manager.searchBy("Milk");
-        Product[] expected = new Product[]{};
-        assertArrayEquals(expected, actual);
-    }
+//    @Test
+//    public void shouldNotFindNonBookOrPhone() {
+//        Product[] actual = manager.searchBy("Milk");
+//        Product[] expected = new Product[]{};
+//        assertArrayEquals(expected, actual);
+//    }
 
     @Test
     public void emptySearch() {
@@ -135,6 +135,14 @@ public class ProductManagerTest {
         manager.save(item11);
         Product[] actual = manager.searchBy("Agatha Christie");
         Product[] expected = new Product[]{item3, item11};
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void removeById(){
+        manager.remove(3);
+        manager.save(item11);
+        Product[] actual = manager.searchBy("Agatha Christie");
+        Product[] expected = new Product[]{item11};
         assertArrayEquals(expected, actual);
     }
 }

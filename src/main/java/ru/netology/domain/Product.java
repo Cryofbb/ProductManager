@@ -13,4 +13,11 @@ public class Product {
     private String name;
     private int price;
 
+    public boolean matches(String search) {
+        if (name.contains(search)) {
+            return true;
+        }
+        return false;
+    }
 }
+

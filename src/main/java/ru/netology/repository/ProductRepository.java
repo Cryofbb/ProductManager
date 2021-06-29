@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.netology.domain.Product;
 
-@Data
+
 @RequiredArgsConstructor
 
 public class ProductRepository {

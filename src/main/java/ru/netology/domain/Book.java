@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 
-public class Book extends Product{
+public class Book extends Product {
     private String authorName;
 
     public Book(int id, String name, int price, String authorName) {
@@ -15,5 +15,12 @@ public class Book extends Product{
     }
 
     public Book() {
+    }
+
+    public boolean matches(String search) {
+        if (super.matches(search)) {
+            return true;
+        }
+        return authorName.contains(search);
     }
 }
