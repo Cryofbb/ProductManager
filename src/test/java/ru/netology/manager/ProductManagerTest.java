@@ -20,6 +20,7 @@ public class ProductManagerTest {
     private Smartphone item8 = new Smartphone(8, "Zenphone", 100, "Asus");
     private Product item9 = new Product(9, "Milk", 100);
     private Smartphone item10 = new Smartphone(10, "IphoneXr", 5000, "Apple");
+    private Book item11 = new Book(11, "Mrs. Marple", 30, "Agatha Christie");
 
     @BeforeEach
     public void setup() {
@@ -86,7 +87,34 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void searchWithOne() {
+    public void searchWithOneBook() {
+        ProductManager manager = new ProductManager();
+        manager.save(item2);
+        Product[] actual = manager.searchBy("The Harry Hole series");
+        Product[] expected = new Product[]{item2};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchWithOneAuthor() {
+        ProductManager manager = new ProductManager();
+        manager.save(item11);
+        Product[] actual = manager.searchBy("Agatha Christie");
+        Product[] expected = new Product[]{item11};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchWithOneManufacturer() {
+        ProductManager manager = new ProductManager();
+        manager.save(item10);
+        Product[] actual = manager.searchBy("Apple");
+        Product[] expected = new Product[]{item10};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchWithOneModel() {
         ProductManager manager = new ProductManager();
         manager.save(item10);
         Product[] actual = manager.searchBy("IphoneXr");
@@ -95,10 +123,18 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void searchMultiply() {
+    public void searchMultiplyPhone() {
         manager.save(item10);
         Product[] actual = manager.searchBy("Apple");
         Product[] expected = new Product[]{item5, item10};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchMultiplyBook() {
+        manager.save(item11);
+        Product[] actual = manager.searchBy("Agatha Christie");
+        Product[] expected = new Product[]{item3, item11};
         assertArrayEquals(expected, actual);
     }
 }
