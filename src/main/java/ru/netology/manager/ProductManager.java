@@ -49,6 +49,8 @@ public class ProductManager {
             }
             return false;
         }
+        if (product.getName().contains(search)) {return true;}
+
         return false;
     }
 }

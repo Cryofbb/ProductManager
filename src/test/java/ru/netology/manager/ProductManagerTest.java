@@ -74,7 +74,7 @@ public class ProductManagerTest {
     @Test
     public void shouldNotFindNonBookOrPhone() {
         Product[] actual = manager.searchBy("Milk");
-        Product[] expected = new Product[]{};
+        Product[] expected = new Product[]{item9};
         assertArrayEquals(expected, actual);
     }
 
