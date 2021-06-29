@@ -18,7 +18,8 @@ public class ProductManagerTest {
     private Smartphone item6 = new Smartphone(6, "Galaxy", 300, "Samsung");
     private Smartphone item7 = new Smartphone(7, "Xperia", 200, "Sony");
     private Smartphone item8 = new Smartphone(8, "Zenphone", 100, "Asus");
-    private Product item9 = new Product(8, "Milk", 100);
+    private Product item9 = new Product(9, "Milk", 100);
+    private Smartphone item10 = new Smartphone(10, "IphoneXr", 5000, "Apple");
 
     @BeforeEach
     public void setup() {
@@ -48,7 +49,6 @@ public class ProductManagerTest {
     }
 
 
-
     @Test
     public void shouldFindModel() {
         Product[] actual = manager.searchBy("Xperia");
@@ -74,6 +74,31 @@ public class ProductManagerTest {
     public void shouldNotFindNonBookOrPhone() {
         Product[] actual = manager.searchBy("Milk");
         Product[] expected = new Product[]{};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void emptySearch() {
+        ProductManager manager = new ProductManager();
+        Product[] actual = manager.searchBy("Apple");
+        Product[] expected = new Product[]{};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchWithOne() {
+        ProductManager manager = new ProductManager();
+        manager.save(item10);
+        Product[] actual = manager.searchBy("IphoneXr");
+        Product[] expected = new Product[]{item10};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchMultiply() {
+        manager.save(item10);
+        Product[] actual = manager.searchBy("Apple");
+        Product[] expected = new Product[]{item5, item10};
         assertArrayEquals(expected, actual);
     }
 }
